@@ -18,6 +18,9 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
     "nodemon": "^2.0.12",
-    "save-dev": "0.0.1-security"
+    "path": "^0.12.7",
+    "save-dev": "0.0.1-security",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
   }
 }
