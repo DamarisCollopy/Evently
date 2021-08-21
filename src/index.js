@@ -1,16 +1,12 @@
-const customExpress = require('./config/customExpress')
-const connection = require('./data/database')
-const tables = require('./data/table')
+ const express = require('express')
+ const routes = require('./routes')
 
 
-connection.connect((error =>{
-    if(error){
-        console.log(error)
-    } else {
-        tables.init(connection)
-        console.log('conectado com sucesso')
-        const app = customExpress()
-        app.listen(3000, () => console.log('servidor rodando na porta 3000'))
-    }
-}))
+const app = express()
+const port = 3000
 
+routes(app)
+
+app.listen(port, () => console.log(`servidor rodando na porta ${port}`))
+
+module.exports = app
