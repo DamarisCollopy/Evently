@@ -3,11 +3,10 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Users', {
-      id: {
+      identifier: { 
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(11), 
+        primaryKey: true 
       },
       firstName: {
         allowNull: false,
@@ -19,7 +18,7 @@ module.exports = {
       },
       email: {
         allowNull: false,
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(50)
       },
       birthDate: {
         type: Sequelize.DATEONLY
@@ -36,10 +35,11 @@ module.exports = {
       zipCode: {
         type: Sequelize.STRING(8)
       },
-      Identifier: {
-        allowNull: false,
-        type: Sequelize.STRING(11)
-      },
+      EventId: { 
+          allowNull: false,
+          type: Sequelize.Integer, 
+          onDelete:'CASCADE',
+          references: {model: 'Events', key: 'id'}},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

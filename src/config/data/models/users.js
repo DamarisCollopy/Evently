@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Users.hasMany(models.Events),
+      Users.belongsTo(models.UsersActivities)
     }
   };
   Users.init({
@@ -34,15 +35,15 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Users',
-    freezeTableName: true,
-    instanceMethods: {
-        generateHash(password) {
-            return bcrypt.hash(password, bcrypt.genSaltSync(8));
-        },
-        validPassword(password) {
-            return bcrypt.compare(password, this.password);
-        }
-    }
+    // freezeTableName: true,
+    // instanceMethods: {
+    //     generateHash(password) {
+    //         return bcrypt.hash(password, bcrypt.genSaltSync(8));
+    //     },
+    //     validPassword(password) {
+    //         return bcrypt.compare(password, this.password);
+    //     }
+    // }
   });
   return Users;
 };
