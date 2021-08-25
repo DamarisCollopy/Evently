@@ -16,7 +16,7 @@ class UsersControllers{
         try{
             const find = await users.Users.findOne({
                 where :{
-                    id : Number(id)
+                    Identifier : id
                 }
             })
             return res.status(200).json(find)
@@ -43,13 +43,13 @@ class UsersControllers{
         try{
             await users.Users.update(updateUsers, {
                 where : {
-                    id : Number(id)
+                    Identifier : id
                 }
             })
 
             const mens =  await users.Users.findOne({
                 where :{
-                    id : Number(id)
+                    Identifier : id
                 }
             })
             return res.status(200).json(mens)
@@ -64,7 +64,7 @@ class UsersControllers{
         try{
             await users.Users.destroy({
                 where :{
-                    id : Number(id)
+                    Identifier : id
                 }
             })
             return res.status(200).json({
@@ -72,6 +72,20 @@ class UsersControllers{
             })
 
         }catch(error){
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async schedule(req, res){
+        const {id} = req.params
+        try{
+            const find = await users.UsersActivities.findAll({
+                where :{
+                    id : Number(id)               
+                }
+            })
+            return res.status(200).json(find)
+        } catch(error){
             return res.status(500).json(error.message)
         }
     }

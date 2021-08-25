@@ -35,11 +35,6 @@ module.exports = {
       zipCode: {
         type: Sequelize.STRING(8)
       },
-      EventId: { 
-          allowNull: false,
-          type: Sequelize.Integer, 
-          onDelete:'CASCADE',
-          references: {model: 'Events', key: 'id'}},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -35,12 +35,6 @@ module.exports = {
       confirmEvent: {
         type: Sequelize.BOOLEAN
       },
-      UserId: { 
-        allowNull: false,
-        type: Sequelize.STRING(11), 
-        references: {model: 'Users', key: 'id'},
-        onDelete:'CASCADE'
-      },
       ActivityId: { 
         allowNull: false,
         type: Sequelize.INTEGER, 

@@ -12,17 +12,17 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       EventId: { 
-        allowNull: false,
-        type: Sequelize.Integer,
-        onDelete:'CASCADE', 
-        references: {model: 'Events', key: 'id'}
-      },
+          allowNull: false,
+          type: Sequelize.INTEGER,
+          onDelete:'CASCADE', 
+          references: {model: 'Events', key: 'id'}
+        },
       UserId: { 
-        allowNull: false,
-        type: Sequelize.STRING(11),
-        onDelete:'CASCADE', 
-        references: {model: 'Users', key: 'id'}
-      },
+         allowNull: false,
+         type: Sequelize.STRING(11),
+         onDelete:'CASCADE', 
+         references: {model: 'Users', key: 'identifier'}
+       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

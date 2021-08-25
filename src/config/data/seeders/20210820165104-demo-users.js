@@ -4,6 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
    
       await queryInterface.bulkInsert('users', [{
+        Identifier:'33333333333',
         firstName: 'John',
         lastName: 'Oliveira',
         email:'jose@email.com',
@@ -12,11 +13,11 @@ module.exports = {
         neighborhood:'Centro',
         city:'Rio de Janeiro',
         zipCode:'20040970',
-        Identifier:'33333333333',
-        password:'1234567',
+        password:'12345678',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
+        Identifier:'11111111111',
         firstName: 'Bia',
         lastName: 'Costa',
         email:'bia@email.com',
@@ -25,11 +26,11 @@ module.exports = {
         neighborhood:'Santa Cruz',
         city:'Rio de Janeiro',
         zipCode:'23515030',
-        Identifier:'11111111111',
-        password:'1234567',
+        password:'12345678',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
+        Identifier:'22222222222',
         firstName: 'Antonio',
         lastName: 'Pereira',
         email:'antonio@email.com',
@@ -38,11 +39,11 @@ module.exports = {
         neighborhood:'Jardim Paulista',
         city:'Sao Paulo',
         zipCode:'01409001',
-        Identifier:'22222222222',
-        password:'1234567',
+        password:'12345678',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
+        Identifier:'55555555555',
         firstName: 'Pedro',
         lastName: 'Conseicao',
         email:'pedro@email.com',
@@ -51,11 +52,11 @@ module.exports = {
         neighborhood:'Aclimação',
         city:'Sao Paulo',
         zipCode:'01532001',
-        Identifier:'33333333333',
-        password:'1234567',
+        password:'12345678',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
+        Identifier:'44444444444',
         firstName: 'Luiza',
         lastName: 'Santos',
         email:'luiza@email.com',
@@ -64,8 +65,7 @@ module.exports = {
         neighborhood:'Jardim Varginha',
         city:'Sao Paulo',
         zipCode:'04857043',
-        Identifier:'44444444444',
-        password:'1234567',
+        password:'12345678',
         createdAt: new Date(),
         updatedAt: new Date()
       }], {});

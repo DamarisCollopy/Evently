@@ -12,8 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Users.hasMany(models.Events),
-      Users.belongsTo(models.UsersActivities)
+      Users.belongsToMany(models.Events, { through: 'UsersActivities'})
     }
   };
   Users.init({
@@ -30,7 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     neighborhood: DataTypes.STRING,
     city: DataTypes.STRING,
     zipCode: DataTypes.STRING,
-    Identifier: DataTypes.STRING,
+    Identifier: {
+      type :  DataTypes.STRING,
+      primaryKey: true
+    },
     password: DataTypes.STRING
   }, {
     sequelize,

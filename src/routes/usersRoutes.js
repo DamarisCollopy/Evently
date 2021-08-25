@@ -6,6 +6,7 @@ const router = Router()
 router.get('/users', UsersControllers.read)
 
 router.get('/users/:id', UsersControllers.findId)
+router.get('/users/schedule/:id', UsersControllers.schedule)
 
 router.post('/users', UsersControllers.create)
 
