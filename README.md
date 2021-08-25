@@ -10,7 +10,7 @@
   * consign
 
 
-  Rodando o migration
+  # Rodando o migration
   $ npx sequelize-cli db:migrate
-  Rodando Seed 
+  # Rodando Seed 
   $ npx sequelize-cli db:seed:all
