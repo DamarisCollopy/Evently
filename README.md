@@ -23,7 +23,17 @@
  
  Para se conectar ao container
  $ mysql -uroot -ppassword -h 127.0.0.1 -P 3306 --protocol=tcp
+ 
+# Executando o docker-compose.yml
+ * para roder os services abaixo
+  $docker-compose up -d
 
+ * para terminar os services abaixo
+  $docker-compose down 
+  Adminer (http://localhost:8080)
+  
+ * Entrando no container
+  docker exec -it some-mysql bash
 
   # Rodando o migration
   $ npx sequelize-cli db:migrate
