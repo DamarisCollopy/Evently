@@ -14,11 +14,11 @@ module.exports = {
       day: {
         type: Sequelize.DATEONLY
       },
-      endTime: {
-        type: Sequelize.DATEONLY
-      },
       starTime: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.TIME
+      },
+      endTime: {
+        type: Sequelize.TIME
       },
       maxParticipants: {
         type: Sequelize.INTEGER
@@ -38,11 +38,8 @@ module.exports = {
       confirmEvent: {
         type: Sequelize.BOOLEAN
       },
-      ActivityId: { 
-        allowNull: false,
-        type: Sequelize.INTEGER, 
-        references: {model: 'Activities', key: 'id'},
-        onDelete:'CASCADE'
+      event: {
+        type: Sequelize.STRING(50)
       },
       createdAt: {
         allowNull: false,

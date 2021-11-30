@@ -3,8 +3,9 @@ const event = require('../config/data/models')
 class EventsControllers {
 
     static async create(req,res){
-        const newEvent = req.body
 
+        res.set('Access-Control-Allow-Origin', '*')
+        const newEvent = req.body
         try{
             const insert = await event.Events.create(newEvent)
             return res.status(200).json(insert)
@@ -14,6 +15,7 @@ class EventsControllers {
     }
 
     static async read(req,res){
+        res.set('Access-Control-Allow-Origin', '*')
         try{
             const list = await event.Events.findAll()
             return res.status(200).json(list)
@@ -23,6 +25,7 @@ class EventsControllers {
     }
 
     static async findId(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
         try{
             const find = await event.Events.findOne({
@@ -37,6 +40,7 @@ class EventsControllers {
     }
 
     static async update(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
         const updateEvents = req.body
 
@@ -59,6 +63,7 @@ class EventsControllers {
     }
 
     static async delete(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
 
         try{

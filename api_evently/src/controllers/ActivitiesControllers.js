@@ -3,6 +3,7 @@ const act = require('../config/data/models')
 class ActivitiesControllers {
 
     static async create(req,res){
+        res.set('Access-Control-Allow-Origin', '*')
         const newAct = req.body
 
         try{
@@ -14,6 +15,7 @@ class ActivitiesControllers {
     }
 
     static async read(req,res){
+        res.set('Access-Control-Allow-Origin', '*')
         try{
             const list = await act.Activities.findAll()
             return res.status(200).json(list)
@@ -23,6 +25,7 @@ class ActivitiesControllers {
     }
 
     static async findName(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {name} = req.params
         try{
             const find = await act.Activities.findOne({
@@ -37,6 +40,7 @@ class ActivitiesControllers {
     }
 
     static async delete(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
 
         try{

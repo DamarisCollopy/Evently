@@ -3,6 +3,7 @@ const users = require('../config/data/models');
 
 class UsersControllers{
     static async read(req,res){
+        res.set('Access-Control-Allow-Origin', '*')
         try{
             const list = await users.Users.findAll()
             return res.status(200).json(list)
@@ -12,6 +13,7 @@ class UsersControllers{
     }
 
     static async findId(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
         try{
             const find = await users.Users.findOne({
@@ -26,6 +28,7 @@ class UsersControllers{
     }
 
     static async create(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const newUsers = req.body
 
         try{
@@ -37,6 +40,7 @@ class UsersControllers{
     }
     
     static async update(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
         const updateUsers = req.body
 
@@ -59,6 +63,7 @@ class UsersControllers{
     }
 
     static async delete(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
 
         try{
@@ -77,6 +82,7 @@ class UsersControllers{
     }
 
     static async schedule(req, res){
+        res.set('Access-Control-Allow-Origin', '*')
         const {id} = req.params
         try{
             const find = await users.UsersActivities.findAll({
