@@ -97,7 +97,7 @@ export default defineComponent({
           neighborhood: '',
           city: '',
           confirmEvent: false,
-          event: '',
+          event: this.option,
         }
     }
   },

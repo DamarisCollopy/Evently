@@ -62,7 +62,10 @@
                        Fim : {{event.endTime}}
                     </div>
                     <div class="text-caption text-grey" >
-                       Numero de Participantes : {{event.maxParticipants}}
+                       Numero Maximo de Participantes : {{event.maxParticipants}}
+                    </div>
+                     <div class="text-caption text-grey" >
+                       Numero de Participantes : {{event.numbParticipants}}
                     </div>
                     <div class="text-caption text-grey" >
                        Endereço : {{event.neighborhood}}
@@ -70,15 +73,9 @@
                     <div class="text-caption text-grey" >
                        Cidade : {{event.city}}
                     </div>
-                </q-card-section>
 
-                </q-card-section>
-
-                <q-separator />
-
-                <q-card-section>
                     <div class="text-caption"  flat formDate>
-                    {{event.day}}
+                    {{event.day}} 
                     </div>
                    
                     <div class="text-caption text-primary text-bold" 
@@ -91,6 +88,20 @@
                         v-if="event.confirmEvent">
                         Evento : Confirmado
                     </div>
+                    </q-card-section>
+                </q-card-section>
+
+                <q-separator />
+
+                <q-card-section>
+                     <q-btn 
+                        :disable="event.confirmEvent" 
+                        @click="addMembros(event.numbParticipants,event.maxParticipants) && editEvent(event.id) " 
+                        outline 
+                        color="primary" 
+                        label="Eu quero participar" >
+                        {{editEvents.numbParticipants}}
+                     </q-btn>
                 </q-card-section>
                 </q-card>
             </div>
@@ -103,36 +114,81 @@
 import { defineComponent } from 'vue';
 import axios from 'axios';
 import { date } from 'quasar';
+import { ref } from 'vue'
 
 export default defineComponent({
   name: 'Home',
   data(){
       return {
-          events:[]
+        events: [],
+        editEvents: {
+            numbParticipants: null,
+            confirmEvent: false
+        },
       }
+      
   },
     methods: {
-      getEvents(){
-        axios.get(`${ process.env.API }/events`).then(response => {
-            this.events = response.data
-            console.log(this.events)
-        }).catch(err => {
-            this.$q.dialog({
-            title: 'Error',
-            message: 'Could not find events'
+        addMembros(numbParticipants,maxParticipants){
+            if(maxParticipants == numbParticipants) {
+                this.editEvents.numbParticipants = numbParticipants
+                return this.editEvents.confirmEvent = true
+            } else {
+                return this.editEvents.numbParticipants = numbParticipants + 1
+            }        
+        },
+
+        getEvents(){
+            axios.get(`${ process.env.API }/events`).then(response => {
+                this.events = response.data
+                console.log(response.data)
+            }).catch(err => {
+                this.$q.dialog({
+                 title: 'Error',
+                 message: 'Could not find events'
+            })
         })
-      })
-      }
+       },
+
+        editEvent(id){
+            console.log(this.editEvents.numbParticipants)
+            console.log(this.editEvents.confirmEvent)
+            axios.put(`${ process.env.API }/events/${id}`, this.editEvents )
+                .then(response => {
+                    console.log('response', response.data)
+                    this.$router.push('/home')
+                    this.$q.notify({
+                    message: 'Evento Criado com sucesso !!!',
+                    actions: [
+                        { label: 'Dismiss', color: 'yellow' }
+                    ]
+                    })
+                    this.$q.loading.hide()
+            }).catch(error => {
+                console.log('error:', error)
+                this.$q.dialog({
+                title: 'Error',
+                message: 'Ops, something went wrong, try again'
+                })
+                this.$q.loading.hide()
+            })
+    },
+
     },
     computed: {
       formDate(day){
        return date.formatDate(day, 'MMMM D h:mmA')
-      }
-    },
-    created(){
-        this.getEvents()
-    }
+      },
 
+    },
+     created(){
+        this.getEvents()
+    },
+    setup () {
+        return {
+      selection: ref([ 1 ])
+    }
+  }
 })
 </script>
 
