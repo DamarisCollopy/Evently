@@ -116,6 +116,7 @@ import axios from 'axios';
 import { date } from 'quasar';
 import { ref } from 'vue'
 
+
 export default defineComponent({
   name: 'Home',
   data(){
@@ -129,6 +130,7 @@ export default defineComponent({
       
   },
     methods: {
+        
         addMembros(numbParticipants,maxParticipants){
             if(maxParticipants == numbParticipants) {
                 this.editEvents.numbParticipants = numbParticipants
@@ -176,10 +178,11 @@ export default defineComponent({
 
     },
     computed: {
+     
       formDate(day){
        return date.formatDate(day, 'MMMM D h:mmA')
       },
-
+      
     },
      created(){
         this.getEvents()

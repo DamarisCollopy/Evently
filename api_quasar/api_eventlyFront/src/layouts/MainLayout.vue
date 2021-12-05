@@ -5,10 +5,29 @@
           <q-avatar>
           </q-avatar>
           <q-toolbar-title class="text-capitalize text-weight-bolder text-h5">
-            Evently
+            Evently 
             </q-toolbar-title> 
-             <q-btn to="/home" flat round dense class="q-mr-sm" icon="home"/>
-             <q-btn to="/login" flat round dense class="q-mr-sm"  icon="login"/>
+            <q-btn to="/home" flat round dense class="q-mr-sm" icon="home"/>
+            <q-btn 
+                   to="/login" 
+                   v-if="!users.uuid" 
+                   flat 
+                   round 
+                   dense 
+                   class="q-mr-sm"  
+                   icon="login"/>
+            <q-btn 
+                   to="/login" 
+                   v-else
+                   @click="logoutUser" 
+                   flat 
+                   round 
+                   dense 
+                   class="q-mr-sm "  
+                   icon="account_circle"
+                   >
+                   {{users.name}}
+            </q-btn>
         </q-toolbar>
       </q-header>
 
@@ -27,13 +46,20 @@
 <script>
 
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+import {mapState, mapActions} from 'vuex';
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
     
+  },
+  methods: {
+    ... mapActions('firebase', ['logoutUser']),
+  },
+  computed: {
+    ... mapState('firebase', ['users']),
   },
 
   setup () {
