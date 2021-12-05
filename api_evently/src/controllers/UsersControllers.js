@@ -18,7 +18,7 @@ class UsersControllers{
         try{
             const find = await users.Users.findOne({
                 where :{
-                    Identifier : id
+                    uuid : id
                 }
             })
             return res.status(200).json(find)
@@ -47,13 +47,13 @@ class UsersControllers{
         try{
             await users.Users.update(updateUsers, {
                 where : {
-                    Identifier : id
+                    uuid : id
                 }
             })
 
             const mens =  await users.Users.findOne({
                 where :{
-                    Identifier : id
+                    uuid : id
                 }
             })
             return res.status(200).json(mens)
@@ -69,7 +69,7 @@ class UsersControllers{
         try{
             await users.Users.destroy({
                 where :{
-                    Identifier : id
+                    uuid : id
                 }
             })
             return res.status(200).json({
@@ -87,7 +87,7 @@ class UsersControllers{
         try{
             const find = await users.UsersActivities.findAll({
                 where :{
-                    id : Number(id)               
+                    UserId : Number(id)               
                 }
             })
             return res.status(200).json(find)

@@ -16,10 +16,10 @@ module.exports = {
           type: Sequelize.INTEGER,
           onDelete:'CASCADE', 
           references: {model: 'Events', key: 'id'}
-        },
+      },
       UserId: { 
          allowNull: false,
-         type: Sequelize.STRING(11),
+         type: Sequelize.STRING(250),
          onDelete:'CASCADE', 
          references: {model: 'Users', key: 'uuid'}
        },

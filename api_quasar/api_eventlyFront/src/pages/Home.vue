@@ -8,7 +8,7 @@
                  <img src="https://cdn.quasar.dev/img/avatar2.jpg">
             <q-card-section>
                 <div class="text-h6">Em busca de aventuras</div>
-                <div class="text-subtitle2">by John Doe</div>
+                <div class="text-subtitle2">Olá, {{users.name}}  {{users.lastName}} </div>
             </q-card-section>
 
         <q-separator />
@@ -32,7 +32,7 @@
             <q-card-actions vertical>
                 <q-btn flat to='/home'>Home</q-btn>
                 <q-btn flat to='/events'>Eventos</q-btn>
-                <q-btn flat></q-btn>
+                <q-btn flat to='/myevents'>Meus Eventos</q-btn>
             </q-card-actions>
             </q-card>
         </div>
@@ -95,7 +95,8 @@
 
                 <q-card-section>
                      <q-btn 
-                        :disable="event.confirmEvent" 
+                        :disable="event.confirmEvent"
+                        v-show="users.uuid"  
                         @click="addMembros(event.numbParticipants,event.maxParticipants) && editEvent(event.id) " 
                         outline 
                         color="primary" 
@@ -115,13 +116,12 @@ import { defineComponent } from 'vue';
 import axios from 'axios';
 import { date } from 'quasar';
 import { ref } from 'vue'
-
+import { mapState, mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'Home',
   data(){
       return {
-        events: [],
         editEvents: {
             numbParticipants: null,
             confirmEvent: false
@@ -130,7 +130,8 @@ export default defineComponent({
       
   },
     methods: {
-        
+        ... mapActions('option', ['getEvents']),
+
         addMembros(numbParticipants,maxParticipants){
             if(maxParticipants == numbParticipants) {
                 this.editEvents.numbParticipants = numbParticipants
@@ -140,21 +141,7 @@ export default defineComponent({
             }        
         },
 
-        getEvents(){
-            axios.get(`${ process.env.API }/events`).then(response => {
-                this.events = response.data
-                console.log(response.data)
-            }).catch(err => {
-                this.$q.dialog({
-                 title: 'Error',
-                 message: 'Could not find events'
-            })
-        })
-       },
-
         editEvent(id){
-            console.log(this.editEvents.numbParticipants)
-            console.log(this.editEvents.confirmEvent)
             axios.put(`${ process.env.API }/events/${id}`, this.editEvents )
                 .then(response => {
                     console.log('response', response.data)
@@ -174,11 +161,12 @@ export default defineComponent({
                 })
                 this.$q.loading.hide()
             })
-    },
+        },
 
     },
     computed: {
-     
+      ... mapState('firebase', ['users']),
+      ... mapState('option', ['events']),
       formDate(day){
        return date.formatDate(day, 'MMMM D h:mmA')
       },

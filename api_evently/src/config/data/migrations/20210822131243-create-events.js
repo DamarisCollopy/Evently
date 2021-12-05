@@ -41,6 +41,9 @@ module.exports = {
       event: {
         type: Sequelize.STRING(50)
       },
+      userId:{
+        type: Sequelize.STRING(250)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

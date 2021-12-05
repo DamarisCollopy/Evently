@@ -14,6 +14,7 @@ module.exports = {
       waitEvent: false,
       confirmEvent: true,
       event: 'Voley',
+      userId: 'RvmJPvgRT8S6r6Cc75soY4bTA382',
       createdAt: new Date(),
       updatedAt: new Date()
     },{
@@ -28,6 +29,7 @@ module.exports = {
       waitEvent: true,
       confirmEvent: false,
       event: 'Xadrez',
+      userId: 'RvmJPvgRT8S6r6Cc75soY4bTA382',
       createdAt: new Date(),
       updatedAt: new Date()
     },{
@@ -42,6 +44,7 @@ module.exports = {
       waitEvent: true ,
       confirmEvent: false,
       event: 'Futebol',
+      userId: 'RvmJPvgRT8S6r6Cc75soY4bTA382',
       createdAt: new Date(),
       updatedAt: new Date()
     },{
@@ -56,6 +59,7 @@ module.exports = {
       waitEvent: false,
       confirmEvent: true,
       event: 'Baskete',
+      userId: 'lLbI1EfaLpRg17QGpwbQHND5bBC2',
       createdAt: new Date(),
       updatedAt: new Date()
     },{
@@ -70,6 +74,7 @@ module.exports = {
       waitEvent: false,
       confirmEvent: true,
       event: 'Futbool Americano',
+      userId: 'lLbI1EfaLpRg17QGpwbQHND5bBC2',
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

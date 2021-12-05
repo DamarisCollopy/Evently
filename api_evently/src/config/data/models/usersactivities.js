@@ -14,7 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UsersActivities.init({
-    Name: DataTypes.STRING
+    Name: DataTypes.STRING,
+    EventId: DataTypes.INTEGER,
+    UserId: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'UsersActivities',

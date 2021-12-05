@@ -15,13 +15,13 @@
           >
             <q-input
               filled
-              v-model="email"
+              v-model="formData.email"
               label="Email *"
               hint="Email"
               lazy-rules
               :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
-            <q-input label="Password" v-model="password" filled :type="isPwd ? 'password' : 'text'" hint="Password with toggle">
+            <q-input label="Password" v-model="formData.password" filled :type="isPwd ? 'password' : 'text'" hint="Password with toggle">
               <template v-slot:append>
                 <q-icon
                   :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -52,15 +52,23 @@
 <script>
 
 import { defineComponent } from 'vue';
-
+import {mapActions} from 'vuex';
 
 export default defineComponent({
   name: 'Login',
   data(){
       return{
-        email:'',
-        password:''
+        formData: {
+          email:'',
+          password:''
+        }
       };
     },
+  methods: {
+     ... mapActions('firebase', ['loginUser']),
+    onSubmit(){
+        this.loginUser(this.formData)
+    }
+  }
 })
 </script>

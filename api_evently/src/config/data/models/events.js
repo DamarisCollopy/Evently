@@ -24,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     neighborhood: DataTypes.STRING,
     city: DataTypes.STRING,
     waitEvent: DataTypes.BOOLEAN,
-    confirmEvent: DataTypes.BOOLEAN
+    confirmEvent: DataTypes.BOOLEAN,
+    event: DataTypes.STRING,
+    userId:  DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Events',

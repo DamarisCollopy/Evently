@@ -1,7 +1,6 @@
 import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import option from './store-tasks'
-import events from './store-tasks'
 import firebase from './store-firebase'
 
 // import example from './module-example'
@@ -19,7 +18,6 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       option,
-      events,
       firebase
     },
 

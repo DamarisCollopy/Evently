@@ -7,7 +7,7 @@ class ActivitiesControllers {
         const newAct = req.body
 
         try{
-            const insert = await act.Activities.create(newAct)
+            const insert = await act.UsersActivities.create(newAct)
             return res.status(200).json(insert)
         }catch(error){
             return res.status(500).json(error.message)
