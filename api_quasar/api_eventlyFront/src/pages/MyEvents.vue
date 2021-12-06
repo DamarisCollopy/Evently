@@ -3,31 +3,34 @@
     <q-toolbar-title class="text-capitalize text-weight-bolder text-h5 text-center">
               Meus eventos
     </q-toolbar-title> 
+     
     <q-separator vertical inset />
     <div class="row" 
         >
-      <div class="col-md-3 offset-md-3">
-        <q-list  v-for="event in events" 
-                        :key="event.id"
-                v-show="event.userId == users.uuid && !edit">
+      <div  class=".col-md-6 .offset-md-3" 
+            v-for="event in events" 
+                        :key="event.id">
+        <q-list  v-if="event.userId == users.uuid && !edit">
             <q-item>
             <q-item-section>
-                <q-item-label>{{event.name}}</q-item-label>
+                <q-item-label class="text-h6">{{event.name}}</q-item-label>
                 <q-item-label caption lines="2">{{event.event}}</q-item-label>
             </q-item-section>
              <q-separator spaced inset />
             <q-item-section side top>
                 <q-item-label caption>Editar</q-item-label>
-                <q-icon  name="edit" @click='onEdit(event.id)' color="red" />
+                <q-icon  name="edit" @click='onEdit(event.id)' to="/home" color="red" />
             </q-item-section>
              <q-separator spaced inset />
             <q-item-section side top>
                     <q-item-label caption>Deletar</q-item-label>
-                    <q-icon name="delete" @click="OnDelete(event.id)" color="black" />
+                    <q-icon name="delete" @click="OnDelete(event.id)" to='/home' color="black" />
             </q-item-section>
             </q-item>
+           
         </q-list>
       </div>
+
 
       <div class="col-md-3 offset-md-3" v-show="edit">
         <div class="q-pa-sm" >

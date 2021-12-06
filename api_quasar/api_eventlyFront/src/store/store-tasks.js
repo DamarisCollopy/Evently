@@ -102,7 +102,7 @@ const getters = {
     option: (state) => {
         return state.option
     },
-    events: state => {
+    events: (state) => {
         return state.events;
     },
 }

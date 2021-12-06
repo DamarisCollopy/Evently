@@ -16,15 +16,15 @@
             <q-card-actions>
                 <q-btn label="Perfil" color="primary" flat />
                 <q-btn icon="event" round color="primary">
-                <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
-                    <q-date v-model="proxyDate">
-                    <div class="row items-center justify-end q-gutter-sm">
-                        <q-btn label="Cancel" color="primary" flat v-close-popup />
-                        <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
-                    </div>
-                    </q-date>
-                </q-popup-proxy>
-                </q-btn>
+                 <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
+                <q-date v-model="proxyDate">
+                <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn label="Cancel" color="primary" flat v-close-popup />
+                    <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
+                </div>
+                </q-date>
+            </q-popup-proxy>
+            </q-btn>
             </q-card-actions>
 
              <q-separator />

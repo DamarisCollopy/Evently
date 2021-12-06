@@ -1,14 +1,13 @@
 <template>
-  <q-page class="flex flex-center">
-    <div>
-      <q-toolbar-title v-show="users.uuid" class="text-capitalize text-weight-bolder text-h5">
+  <q-page>
+    <q-toolbar-title v-show="users.uuid" class="text-capitalize text-weight-bolder text-h5">
             Criando Eventos
       </q-toolbar-title> 
-
-      <div v-show="users.uuid" class="q-gutter-y-md column" style="max-width: 800px">
+    <q-space />
+    <div class='.col-md-6 .offset-md-3'>
+      <div v-show="users.uuid" class="q-gutter-md row items-start" style="max-width: 800px">
         <q-input v-model="eventos.name" filled label="Titulo" :dense="dense" />
-        <div class="text-subtitle2">Dia do Evento</div>
-         <q-input filled v-model="eventos.day" mask="date" :rules="['date']">
+         <q-input filled label='Dia do Evento' v-model="eventos.day" mask="date" :rules="['date']">
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" cover transition-show="scale" transition-hide="scale">
@@ -22,8 +21,7 @@
           </template>
         </q-input>
 
-        <div class="text-subtitle2">Inicio de Evento</div>
-        <q-input filled v-model="eventos.starTime">
+        <q-input label='Inicio de Evento' filled v-model="eventos.starTime">
           <template v-slot:append>
           <q-icon name="access_time" class="cursor-pointer">
             <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -37,8 +35,7 @@
         </template>
       </q-input>
 
-       <div class="text-subtitle2">Fim do Evento</div>
-        <q-input filled v-model="eventos.endTime">
+        <q-input label='Fim do Evento' filled v-model="eventos.endTime">
           <template v-slot:append>
           <q-icon name="access_time" class="cursor-pointer">
             <q-popup-proxy cover transition-show="scale" transition-hide="scale">
@@ -52,26 +49,28 @@
         </template>
       </q-input>
 
-      <div class="text-subtitle2">Tipo de Evento</div>
       <q-select 
           filled
           v-model="eventos.event" 
           :options="option" 
           label="Atividade" />
 
-      <div  class="text-subtitle2">Numero de Participantes</div>
       <q-input
           v-model="eventos.maxParticipants"
           type="number"
           filled
           min='0'
+          label='Numero de Participantes'
           style="max-width: 200px"
         />
      
          <q-input v-model="eventos.neighborhood"  filled label="Endereço" :dense="dense" />
           <q-input v-model="eventos.city"  filled label="Cidade" :dense="dense" />
-          <q-btn @click="onSubmit(users.uuid)"  outline color="primary" label="Salvar" />
+        <div class="q-pa-md">
+            <q-btn @click="onSubmit(users.uuid)"  outline color="primary" label="Salvar" />
+        </div>
       </div>
+      
       <div v-show="!users.uuid">
           <q-toolbar-title class="text-capitalize text-weight-bolder text-h5 text-center">
             Ops!! É novo por aqui ?
